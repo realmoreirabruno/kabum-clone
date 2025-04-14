@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "663733278320",
+    "project_id": "kabumclone",
+    "storage_bucket": "kabumclone.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663733278320:android:d8cd1b02ef46419ddac6b5",
+        "android_client_info": {
+          "package_name": "com.kabumclone.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663733278320-7h9i00rhhppce6khgh7mdn20aokrgeva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kabumclone.app",
+            "certificate_hash": "8df991ec34379407c2846fcb60344751f2e94ec4"
+          }
+        },
+        {
+          "client_id": "663733278320-kv646lj03kp9qk6kaj0a143pnndjtmgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr_cXWHZpFBLByWwd9E8Ltg1Q8Qxxbeus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663733278320-kv646lj03kp9qk6kaj0a143pnndjtmgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
