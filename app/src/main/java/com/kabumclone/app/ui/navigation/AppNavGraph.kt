@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kabumclone.app.ui.screens.AccountScreen
+import com.kabumclone.app.ui.screens.FavoritesScreen
 import com.kabumclone.app.ui.screens.departments.DepartamentsScreen
 import com.kabumclone.app.ui.screens.NotificationsScreen
 import com.kabumclone.app.ui.screens.HomeScreen
@@ -23,6 +24,7 @@ fun AppNavGraph(navController: NavHostController, onGoogleLoginClicked: () -> Un
                 }
             )
         }
+        composable(NavRoutes.Favorites.route) { FavoritesScreen(navController) }
         composable(NavRoutes.Notifications.route) { NotificationsScreen() }
         composable("carrinho") { CartScreen() }
         composable(NavRoutes.Conta.route) {

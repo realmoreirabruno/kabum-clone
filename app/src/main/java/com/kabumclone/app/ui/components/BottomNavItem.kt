@@ -16,6 +16,7 @@ fun BottomNavBar(navController: NavController, currentRoute: String?) {
     val items = listOf(
         BottomNavItem("Home", Icons.Default.Home, NavRoutes.Home.route),
         BottomNavItem("Departaments", Icons.AutoMirrored.Filled.List, NavRoutes.Departaments.route),
+        BottomNavItem("Favorites", Icons.Default.Favorite, NavRoutes.Favorites.route),
         BottomNavItem("Notifications", Icons.Default.Notifications, NavRoutes.Notifications.route),
         BottomNavItem("Minha Conta", Icons.Default.Person, NavRoutes.Conta.route)
     )

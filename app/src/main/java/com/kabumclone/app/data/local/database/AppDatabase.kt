@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.kabumclone.app.data.local.dao.ProductDao
 import com.kabumclone.app.data.local.entity.ProductEntity
 
-@Database(entities = [ProductEntity::class], version = 1)
+@Database(entities = [ProductEntity::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun produtoDao(): ProductDao
+    abstract fun productDao(): ProductDao
 }

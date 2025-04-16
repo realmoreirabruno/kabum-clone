@@ -11,8 +11,24 @@ import kotlinx.coroutines.launch
 import android.util.Log
 
 class ProductViewModel(private val repository: ProductRepository) : ViewModel() {
+    var apiLoadedOnce = false
+
     private val _produtos = MutableStateFlow<List<Product>>(emptyList())
     val produtos: StateFlow<List<Product>> = _produtos.asStateFlow()
+
+    private val _favorites = MutableStateFlow<List<Product>>(emptyList())
+    val favorites: StateFlow<List<Product>> = _favorites.asStateFlow()
+
+    fun fetchAndCacheProducts() {
+        viewModelScope.launch {
+            try {
+                repository.fetchAndStoreProdutos()
+                _produtos.value = repository.getLocalProdutos()
+            } catch (e: Exception) {
+                Log.e("ProductViewModel", "Erro ao buscar e armazenar produtos", e)
+            }
+        }
+    }
 
     fun loadProdutos() {
         viewModelScope.launch {
@@ -24,6 +40,32 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
                 _produtos.value = emptyList()
                 Log.e("ProductViewModel", "Error loading products: ${e.message}")
             }
+        }
+    }
+
+    fun loadFavorites() {
+        viewModelScope.launch {
+            try {
+                val result = repository.getFavoriteProdutos()
+                _favorites.value = result
+                Log.d("ProductViewModel", "Favorites loaded: ${result.size}")
+            } catch (e: Exception) {
+                _favorites.value = emptyList()
+                Log.e("ProductViewModel", "Error loading favorites: ${e.message}", e)
+            }
+        }
+    }
+
+    fun toggleFavorite(product: Product) {
+        viewModelScope.launch {
+            repository.toggleFavorite(product)
+
+            val updatedList = _produtos.value.map {
+                if (it.productId == product.productId) {
+                    it.copy(isFavorite = !it.isFavorite)
+                } else it
+            }
+            _produtos.value = updatedList
         }
     }
 }
