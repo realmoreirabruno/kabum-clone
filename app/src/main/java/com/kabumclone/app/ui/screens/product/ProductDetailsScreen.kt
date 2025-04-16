@@ -22,49 +22,49 @@ fun ProductDetailsScreen(
     detalhesViewModel: ProductDetailsViewModel = viewModel(),
     cartViewModel: CartViewModel = viewModel()
 ) {
-    val produto by detalhesViewModel.produto.collectAsState()
-
-    LaunchedEffect(Unit) {
-        detalhesViewModel.carregarProduto(produtoId)
-    }
-
-    val context = LocalContext.current
-
-    if (produto == null) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
-        }
-    } else {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Image(
-                painter = rememberAsyncImagePainter(produto!!.imagemUrl),
-                contentDescription = produto!!.nome,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(250.dp)
-            )
-
-            Spacer(Modifier.height(16.dp))
-
-            Text(produto!!.nome, style = MaterialTheme.typography.headlineSmall)
-            Spacer(Modifier.height(8.dp))
-            Text("R$ %.2f".format(produto!!.preco), style = MaterialTheme.typography.titleLarge)
-
-            Spacer(Modifier.height(24.dp))
-
-            Button(
-                onClick = {
-                    cartViewModel.addToCart(produto!!)
-                    Toast.makeText(context, "Adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Adicionar ao carrinho")
-            }
-        }
-    }
+//    val produto by detalhesViewModel.produto.collectAsState()
+//
+//    LaunchedEffect(Unit) {
+//        detalhesViewModel.carregarProduto(produtoId)
+//    }
+//
+//    val context = LocalContext.current
+//
+//    if (produto == null) {
+//        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//            CircularProgressIndicator()
+//        }
+//    } else {
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(16.dp)
+//        ) {
+//            Image(
+//                painter = rememberAsyncImagePainter(produto!!.imagemUrl),
+//                contentDescription = produto!!.nome,
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(250.dp)
+//            )
+//
+//            Spacer(Modifier.height(16.dp))
+//
+//            Text(produto!!.nome, style = MaterialTheme.typography.headlineSmall)
+//            Spacer(Modifier.height(8.dp))
+//            Text("R$ %.2f".format(produto!!.preco), style = MaterialTheme.typography.titleLarge)
+//
+//            Spacer(Modifier.height(24.dp))
+//
+//            Button(
+//                onClick = {
+//                    cartViewModel.addToCart(produto!!)
+//                    Toast.makeText(context, "Adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
+//                },
+//                modifier = Modifier.fillMaxWidth()
+//            ) {
+//                Text("Adicionar ao carrinho")
+//            }
+//        }
+//    }
 }

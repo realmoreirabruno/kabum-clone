@@ -9,13 +9,20 @@ import com.kabumclone.app.ui.screens.departments.DepartamentsScreen
 import com.kabumclone.app.ui.screens.NotificationsScreen
 import com.kabumclone.app.ui.screens.HomeScreen
 import com.kabumclone.app.ui.screens.cart.CartScreen
+import com.kabumclone.app.ui.screens.departments.ProductCategoryScreen
 import com.kabumclone.app.ui.screens.product.ProductDetailsScreen
 
 @Composable
 fun AppNavGraph(navController: NavHostController, onGoogleLoginClicked: () -> Unit) {
     NavHost(navController = navController, startDestination = NavRoutes.Home.route) {
         composable(NavRoutes.Home.route) { HomeScreen(navController) }
-        composable(NavRoutes.Departaments.route) { DepartamentsScreen(navController) }
+        composable(NavRoutes.Departaments.route) {
+            DepartamentsScreen(
+                onSubcategoriaClick = { subcategoria ->
+                    navController.navigate("categoria/$subcategoria")
+                }
+            )
+        }
         composable(NavRoutes.Notifications.route) { NotificationsScreen() }
         composable("carrinho") { CartScreen() }
         composable(NavRoutes.Conta.route) {
@@ -25,5 +32,10 @@ fun AppNavGraph(navController: NavHostController, onGoogleLoginClicked: () -> Un
             val produtoId = backStackEntry.arguments?.getString("produtoId") ?: ""
             ProductDetailsScreen(navController = navController, produtoId = produtoId)
         }
+        composable("categoria/{nome}") { backStackEntry ->
+            val nomeCategoria = backStackEntry.arguments?.getString("nome") ?: ""
+            ProductCategoryScreen(categoria = nomeCategoria)
+        }
+
     }
 }

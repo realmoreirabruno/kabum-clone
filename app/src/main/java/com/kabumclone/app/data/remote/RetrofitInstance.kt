@@ -1,14 +1,13 @@
 package com.kabumclone.app.data.remote
-
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    val api: ProductApiService by lazy {
+    val api: ApiService by lazy {
         Retrofit.Builder()
-            .baseUrl("https://seu-endpoint.com/api/")
+            .baseUrl("https://fake-store-api.mock.beeceptor.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ProductApiService::class.java)
+            .create(ApiService::class.java)
     }
 }

@@ -2,7 +2,7 @@ package com.kabumclone.app.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.kabumclone.app.data.model.CartItem
-import com.kabumclone.app.data.model.Produto
+import com.kabumclone.app.data.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -11,9 +11,9 @@ class CartViewModel : ViewModel() {
     private val _cartItems = MutableStateFlow<List<CartItem>>(emptyList())
     val cartItems: StateFlow<List<CartItem>> = _cartItems
 
-    fun addToCart(produto: Produto) {
+    fun addToCart(produto: Product) {
         val currentList = _cartItems.value.toMutableList()
-        val existing = currentList.find { it.id == produto.id }
+        val existing = currentList.find { it.id == produto.productId.toString() }
 
         if (existing != null) {
             val updated = existing.copy(quantity = existing.quantity + 1)
@@ -21,10 +21,10 @@ class CartViewModel : ViewModel() {
         } else {
             currentList.add(
                 CartItem(
-                    id = produto.id,
-                    nome = produto.nome,
-                    preco = produto.preco,
-                    imagemUrl = produto.imagemUrl,
+                    id = produto.productId.toString(),
+                    nome = produto.name,
+                    preco = produto.price,
+                    imagemUrl = produto.image,
                     quantity = 1
                 )
             )
